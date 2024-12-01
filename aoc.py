@@ -10,7 +10,7 @@ def read_input(day_num, test=False):
 	filename = f'day{day_num:02}.txt' if not test else f'day{day_num:02}test.txt'
 	path = os.path.join(DATA_PATH, filename)
 	with open(path) as datafile:
-		return datafile.read()
+		return datafile.readlines()
 
 
 def get_function(day_num, part_num):
@@ -23,7 +23,10 @@ def main(day_num, part_num, test):
 	function = get_function(day_num, part_num)
 	raw_data = read_input(day_num, test)
 	answer = function(raw_data)
-	print(f'The solution for day {day_num}, part {part_num} is {answer}')
+	output = f'The solution for day {day_num}, part {part_num} is: {answer}'
+	if test:
+		output += '  [USING TEST DATA]'
+	print(output)
 
 
 if __name__ == "__main__":
